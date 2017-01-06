@@ -121,7 +121,7 @@ $(function() {
 					}else if((Number(last_page)-Number(page))<4 && (Number(last_page)-Number(page))>=0){
 						$(".page-nav").children().removeClass('active');
 						
-						if(Number(page)==100){
+						if(Number(page)==Number(last_page)){
 							$('#raquo-btn').parent().addClass('disabled');
 							$('.page-up-down').children().eq(1).addClass('disabled');
 						}
