@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.exam.pojo.Customer" alias="Customer" />
+		<typeAlias type="com.exam.pojo.Film" alias="Film" />
+		<typeAlias type="com.exam.pojo.FilmActor" alias="Actor" />
+		<typeAlias type="com.exam.pojo.FilmCategory" alias="FilmCategory" />
+		<typeAlias type="com.exam.pojo.FilmText" alias="FilmText" />
+		<typeAlias type="com.exam.pojo.Inventory" alias="Inventory" />
+		<typeAlias type="com.exam.pojo.Language" alias="Language" />
+		<typeAlias type="com.exam.pojo.Rental" alias="Rental" />
+	</typeAliases>
+
+	<plugins>
+		<!-- 配置分页插件 -->
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库 -->
+			<property name="dialect" value="mysql" />
+		</plugin>
+	</plugins>
+</configuration>

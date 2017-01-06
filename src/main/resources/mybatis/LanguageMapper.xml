@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.exam.mapper.LanguageMapper">
+
+    <resultMap type="Language" id="LanguageBeseMap">
+        <id column="language_id" property="languageId"/>
+        <result column="name" property="name"/>
+        <result column="last_update" property="lastUpdate"/>
+    </resultMap>
+    
+    <select id="selectAll" resultMap="LanguageBeseMap">
+        select * from language 
+    </select>
+</mapper>

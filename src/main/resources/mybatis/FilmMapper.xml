@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.exam.mapper.FilmMapper">
+
+	<resultMap type="Film" id="FilmBeseMap">
+		<id column="film_id" property="filmId" />
+		<result column="title" property="title" />
+		<result column="description" property="description" />
+		<association property="language" javaType="Language">
+			<id column="language_id" property="languageId" />
+			<result column="name" property="name" />
+			<result column="last_update" property="lastUpdate" />
+		</association>
+	</resultMap>
+
+	<select id="selectAll"  resultMap="FilmBeseMap">
+		select film_id,title, description,language_id from film
+	</select>
+	
+	<update id="updateFilm" parameterType="Film">
+	   update film set title = #{title}, description = #{description},language_id = #{language.languageId} where film_id = #{filmId} 
+	</update>
+	
+	<insert id="insertFilm" parameterType="Film">
+	   insert into film(title,description,language_id) values(#{title},#{description},#{language.languageId})
+	</insert>
+	
+	<delete id="deleteByFilmId" parameterType="int">
+	   delete from film where film_id = #{filmId}
+	 </delete>
+</mapper>
