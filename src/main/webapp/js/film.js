@@ -108,6 +108,8 @@ $(function() {
 							$('#laquo-btn').parent().removeClass('disabled');
 							$('.page-up-down').children().eq(0).removeClass('disabled');
 						}
+						$('#raquo-btn').parent().removeClass('disabled');
+						$('.page-up-down').children().eq(1).removeClass('disabled');
 						var rows = $('#page-rows').val();
 						if (page != '') {
 							$('#film-tbody').children().remove();
@@ -124,6 +126,9 @@ $(function() {
 						if(Number(page)==Number(last_page)){
 							$('#raquo-btn').parent().addClass('disabled');
 							$('.page-up-down').children().eq(1).addClass('disabled');
+						}else{
+							$('#raquo-btn').parent().removeClass('disabled');
+							$('.page-up-down').children().eq(1).removeClass('disabled');
 						}
 
 						$('#laquo-btn').parent().removeClass('disabled');
