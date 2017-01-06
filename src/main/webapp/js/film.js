@@ -5,6 +5,7 @@ $(function() {
 	$('#laquo-btn').parent().addClass('disabled');
 	$('.page-up-down').children().eq(0).addClass('disabled');
 	
+	
 	$(".disabled").click(function (event) {
         event.preventDefault();        
      });
