@@ -248,7 +248,9 @@ function initFilm(page, rows) {
 																+ film.description
 																+ '&languageid='
 																+ film.language.languageId
-																+ '" class="btn btn-default">修改</a>'
+																+ '&languageName='
+																+ film.language.name
+																+ '" class="btn btn-default">编辑</a>'
 																+ '<button type="button" class="btn btn-default delete-film">删除<input type="hidden" value="'
 																+ film.filmId
 																+ '"></button>'

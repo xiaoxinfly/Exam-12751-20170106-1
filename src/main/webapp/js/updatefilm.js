@@ -27,6 +27,10 @@ function initForm() {
 	$('#filmId').val(array[0].split("=")[1]);
 	$('#title').val(array[1].split("=")[1]);
 	$('#description').text(array[2].split("=")[1]);
+	$('#page-rows').append(
+			'<option selected="selected" value="' + array[3].split("=")[1]+
+			'">' +array[4].split("=")[1] +'</option>'
+	);
 }
 
 function initLanguage(){

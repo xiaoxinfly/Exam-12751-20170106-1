@@ -19,7 +19,7 @@ $(function() {
 															'<div class="alert alert-danger col-md-2" rel="alert">'
 																	+ '<button type="button" class="close" data-dismiss="alert">'
 																	+ '<span aria-disabled="true">&times;</span>'
-																	+ '</button><strong>登录失败</strong></div>')
+																	+ '</button><strong>登录失败，用户不存在</strong></div>')
 										}
 
 									},
