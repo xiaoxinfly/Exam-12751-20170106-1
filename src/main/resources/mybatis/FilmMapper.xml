@@ -14,7 +14,7 @@
 	</resultMap>
 
 	<select id="selectAll"  resultMap="FilmBeseMap">
-		select film_id,title, description,language_id from film
+		select film_id,title, description,l.language_id,l.name,l.last_update from film f ,language l where f.language_id = l.language_id
 	</select>
 	
 	<update id="updateFilm" parameterType="Film">
