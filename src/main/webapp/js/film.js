@@ -14,11 +14,11 @@ $(function() {
 				$('#page-num').val('');
 				var page_ul = $(this).parent().parent();
 				var page_min = page_ul.children().eq(1).text();
-				if(Number(page_min)==1){
+				if(Number(page_min)>=1){
 					$('#laquo-btn').parent().removeClass('disabled');
 					$('.page-up-down').children().eq(0).removeClass('disabled');
 				}
-				if(Number(page_ul.children().eq(5).text())>=page){
+				if((Number($('#last-page').children().text()) - 5)==Number(page_min)){
 					$('#raquo-btn').parent().addClass('disabled');
 					$('.page-up-down').children().eq(1).addClass('disabled');
 				}
@@ -51,6 +51,10 @@ $(function() {
 					$('#laquo-btn').parent().addClass('disabled');
 					$('.page-up-down').children().eq(0).addClass('disabled');
 				}
+				if(Number($('#last-page').children().text()) <=Number(page_max)){
+					$('#raquo-btn').parent().removeClass('disabled');
+					$('.page-up-down').children().eq(1).removeClass('disabled');
+				}
 				if ((Number(page_max) - 4) == Number(page)) {
 					page_ul.children().eq(Number(page_max) - 4).addClass(
 							'active');
@@ -75,6 +79,10 @@ $(function() {
 			});
 
 	$('.page-btn').click(function(e) {
+		if(Number($('.page-nav').children().eq(1).text())==1){
+			$('#laquo-btn').parent().addClass('disabled');
+			$('.page-up-down').children().eq(0).addClass('disabled');
+		}
 		$('#page-num').val('');
 		$(this).parent().children().removeClass('active');
 		$(this).addClass('active');
@@ -86,21 +94,51 @@ $(function() {
 
 	$('#page-btn-go').click(
 			function() {
-				$(".page-nav").children().removeClass('active');
 				var page = $('#page-num').val();
-				if(Number($('.page-nav').children().eq(5).text())>=page){
-					$('#raquo-btn').parent().addClass('disabled');
-					$('.page-up-down').children().eq(1).addClass('disabled');
-				}
-				var rows = $('#page-rows').val();
-				if (page != '') {
-					$('#film-tbody').children().remove();
-					for (var i = 1; i <= 5; i++) {
-						$(".page-nav").children().eq(i).children().text(
-								Number(page) + i - 1);
+				var last_page = $('#last-page').children().text();
+				if(Number(page)>Number(last_page)){
+					alert("输入的页数不能大于总页数！");
+				}else{
+					if((Number(last_page)-Number(page))>=4){
+						$(".page-nav").children().removeClass('active');
+						if(Number(page)==1){
+							$('#laquo-btn').parent().addClass('disabled');
+							$('.page-up-down').children().eq(0).addClass('disabled');
+						}else{
+							$('#laquo-btn').parent().removeClass('disabled');
+							$('.page-up-down').children().eq(0).removeClass('disabled');
+						}
+						var rows = $('#page-rows').val();
+						if (page != '') {
+							$('#film-tbody').children().remove();
+							for (var i = 1; i <= 5; i++) {
+								$(".page-nav").children().eq(i).children().text(
+										Number(page) + i - 1);
+							}
+							$(".page-nav").children().eq(1).addClass('active');
+							initFilm(page, rows);
+						}
+					}else if((Number(last_page)-Number(page))<4 && (Number(last_page)-Number(page))>=0){
+						$(".page-nav").children().removeClass('active');
+						
+						if(Number($('.page-nav').children().eq(1).text())==1){
+							$('#laquo-btn').parent().addClass('disabled');
+							$('.page-up-down').children().eq(0).addClass('disabled');
+						}else{
+							$('#laquo-btn').parent().removeClass('disabled');
+							$('.page-up-down').children().eq(0).removeClass('disabled');
+						}
+						var rows = $('#page-rows').val();
+						if (page != '') {
+							$('#film-tbody').children().remove();
+							for (var i = 1; i <= 5; i++) {
+								$(".page-nav").children().eq(i).children().text(
+										Number(page) + i - 1);
+							}
+							$(".page-nav").children().eq(1).addClass('active');
+							initFilm(page, rows);
+						}
 					}
-					$(".page-nav").children().eq(1).addClass('active');
-					initFilm(page, rows);
 				}
 			});
 
@@ -215,7 +253,7 @@ function initFilm(page, rows) {
 																+ '"></button>'
 																+ '</div></td></tr>');
 									});
-					$('#last-page').text("共 " + data.lastPage + " 页");
+					$('#last-page').children().text(data.lastPage);
 					$('#page').val(page);
 					addClick();
 				},
