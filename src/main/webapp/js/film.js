@@ -121,21 +121,22 @@ $(function() {
 					}else if((Number(last_page)-Number(page))<4 && (Number(last_page)-Number(page))>=0){
 						$(".page-nav").children().removeClass('active');
 						
-						if(Number($('.page-nav').children().eq(1).text())==1){
-							$('#laquo-btn').parent().addClass('disabled');
-							$('.page-up-down').children().eq(0).addClass('disabled');
-						}else{
-							$('#laquo-btn').parent().removeClass('disabled');
-							$('.page-up-down').children().eq(0).removeClass('disabled');
+						if(Number(page)==100){
+							$('#raquo-btn').parent().addClass('disabled');
+							$('.page-up-down').children().eq(1).addClass('disabled');
 						}
+
+						$('#laquo-btn').parent().removeClass('disabled');
+						$('.page-up-down').children().eq(0).removeClass('disabled');
+						
 						var rows = $('#page-rows').val();
 						if (page != '') {
 							$('#film-tbody').children().remove();
 							for (var i = 1; i <= 5; i++) {
-								$(".page-nav").children().eq(i).children().text(
-										Number(page) + i - 1);
+								$(".page-nav").children().eq(6-i).children().text(
+										Number(page)-i+1);
 							}
-							$(".page-nav").children().eq(1).addClass('active');
+							$(".page-nav").children().eq(5).addClass('active');
 							initFilm(page, rows);
 						}
 					}
